@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
-import { createStore, applyMiddleware } from "redux";
-import { Provider } from "react-redux";
-import thunk from "redux-thunk";
-import smurfReducer from '../reducers.js/index'
 import axios from 'axios'
 import { connect } from 'react-redux';
 import {updatedSmurfs} from '../actions/index'
 
-const store = createStore(smurfReducer, applyMiddleware(thunk));
 class App extends Component {
 
   constructor(){
@@ -42,7 +37,6 @@ class App extends Component {
 
   render() {
     return (
-      <Provider store={store}>
         <div className="App">
           <h1>Smurf Village</h1>
           {this.props.smurfs.map((smurf) =>{
@@ -57,16 +51,15 @@ class App extends Component {
         )}
         )}
       <hr></hr>
-      <h2>Add Smurf</h2>
+      <h2>Add New Smurf</h2>
       <form onSubmit={this.handleClick}>
-        <input type='text' name='name' onChange={this.handleChange} placeholder='Enter Name...' value={this.state.name}/>
-        <input type='text' name='age' onChange={this.handleChange} placeholder='Enter Age...' value={this.state.age}/>
-        <input type='text' name='height' onChange={this.handleChange} placeholder='Enter Height...' value={this.state.height}/>
+        <input type='text' name='name' onChange={this.handleChange} placeholder='Enter Name:' value={this.state.name}/>
+        <input type='text' name='age' onChange={this.handleChange} placeholder='Enter Age:' value={this.state.age}/>
+        <input type='text' name='height' onChange={this.handleChange} placeholder='Enter Height:' value={this.state.height}/>
         <button type='submit'>Add</button>
       </form>
       <hr></hr>
         </div>
-      </Provider>
     );
   }
 }
